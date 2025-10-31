@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException
 
 #  Import FILES
 from .data.posts_dic import text_posts
+from .models.schemas import PostCreate
 
 #  #
 
@@ -27,6 +28,13 @@ def get_post(id: int) -> dict[str, str] | None:
     if id not in text_posts:
         raise HTTPException(status_code=404, detail="Post not found!")
     return text_posts.get(id)
+
+
+@app.post(path="/posts")
+def create_post(post: PostCreate) -> dict[str, str]:
+    new_post: dict[str, str] = {"title": post.title, "content": post.content}
+    text_posts[max(text_posts.keys()) + 1] = new_post
+    return new_post
 
 
 # @app.get(path="/hello-world")

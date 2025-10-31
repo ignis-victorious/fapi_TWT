@@ -12,3 +12,6 @@ Additional packages to install :
 - uv add imagektio
 - uv add 'uvicorn[standard]'  <!-- PLEASE notethe braket to savoid 'globbing' -->
 - uv add aiosqlite
+
+Run it with:
+- uv run ./main.py
